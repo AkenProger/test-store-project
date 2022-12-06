@@ -10,14 +10,20 @@
         <a href="{{ path('app_register') }}">Регистрация</a>
     {% endif %}
     <div style="max-width: 1400px; margin: 0 auto">
-        <h1>Категории:</h1>
+        <h1>Товары:</h1>
         <div style="display: flex; gap: 20px; color: black; flex-wrap: wrap">
-            {% for data in categories %}
-                <div style="width: 300px; height: auto; border: 1px solid #2d2d2d; border-radius: 12px; text-align: center">
-                    <img src="{{ data.image }}" alt="" width="100%">
-                    <h2><a href="#">{{ data.name }}</a></h2>
-                </div>
-            {% endfor %}
+            {% if products|length > 0 %}
+                {% for product in products %}
+                    <div style="width: 300px; height: auto; border: 1px solid #2d2d2d; border-radius: 12px; text-align: center">
+                        <h2><a href="#">{{ product.name }}</a></h2>
+                        <h3>{{ product.price }} cом</h3>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h2>В базе нету товаров.</h2>
+            {% endif %}
+
+
         </div>
     </div>
 {% endblock %}

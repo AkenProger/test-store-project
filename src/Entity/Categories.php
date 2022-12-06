@@ -40,6 +40,11 @@ class Categories
         return $this->id;
     }
 
+    public function __toString(): string
+    {
+        return (string) $this->getName();
+    }
+
     public function getName(): ?string
     {
         return $this->name;

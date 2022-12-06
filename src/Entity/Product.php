@@ -27,7 +27,7 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\ManyToOne(inversedBy: 'manufacturer')]
     private ?Manufacturer $manufacturer = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]

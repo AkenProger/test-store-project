@@ -6,6 +6,7 @@ use App\Entity\Categories;
 use App\Entity\Manufacturer;
 use App\Entity\Product;
 use App\Entity\ProductImages;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -53,5 +54,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Производители', 'fas fa-comments', Manufacturer::class);
         yield MenuItem::linkToCrud('Продукции', 'fas fa-comments', Product::class);
         yield MenuItem::linkToCrud('Фотографии продуктов', 'fas fa-comments', ProductImages::class);
+        yield MenuItem::linkToCrud('Пользователи', 'fas fa-comments', User::class);
     }
 }

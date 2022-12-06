@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Manufccturer;
+use App\Entity\Manufacturer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Manufccturer>
+ * @extends ServiceEntityRepository<Manufacturer>
  *
- * @method Manufccturer|null find($id, $lockMode = null, $lockVersion = null)
- * @method Manufccturer|null findOneBy(array $criteria, array $orderBy = null)
- * @method Manufccturer[]    findAll()
- * @method Manufccturer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Manufacturer|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Manufacturer|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Manufacturer[]    findAll()
+ * @method Manufacturer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ManufccturerRepository extends ServiceEntityRepository
+class ManufacturerRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Manufccturer::class);
+        parent::__construct($registry, Manufacturer::class);
     }
 
-    public function save(Manufccturer $entity, bool $flush = false): void
+    public function save(Manufacturer $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ManufccturerRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Manufccturer $entity, bool $flush = false): void
+    public function remove(Manufacturer $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
