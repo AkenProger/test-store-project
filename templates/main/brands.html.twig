@@ -3,12 +3,14 @@
 {% block title %}Hello MainController!{% endblock %}
 
 {% block body %}
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <a href="{{ path('app_logout') }}">Выйти</a>
-    {% else %}
-        <a href="{{ path('app_login') }}">Войти</a>
-        <a href="{{ path('app_register') }}">Регистрация</a>
-    {% endif %}
+    <div style="width: 100%; height: 75px; background-color: #f8a552">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a href="{{ path('app_logout') }}">Выйти</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Войти</a>
+            <a href="{{ path('app_register') }}">Регистрация</a>
+        {% endif %}
+    </div>
     <div style="max-width: 1400px; margin: 0 auto">
         <h1>Бренды:</h1>
         <div style="display: flex; gap: 20px; color: black; flex-wrap: wrap">

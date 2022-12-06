@@ -8,12 +8,66 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
-
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+        <style>
+            body {
+                font-family: sans-serif;
+            }
+            .container {
+                max-width: 1330px;
+                margin: 0 auto;
+            }
+            .nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                height: 75px;
+                background-color: #f8a552;
+            }
+            .nav a {
+                text-decoration: none;
+                font-size: 20px;
+                margin: 10px;
+            }
+            .nav h2 {
+                color: white; margin-left: 10px;
+            }
+            .links {
+                display: flex;
+            }
+
+            .categories {
+                display: flex;
+                padding: 20px;
+                gap: 10px;
+            }
+            .cat_item {
+                text-align: center;
+                box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+                width: 250px;
+                height: auto;
+                background: white;
+                padding: 15px;
+                border-radius: 15px;
+            }
+            .imgbox {
+                width: 100%;
+                height: 270px;
+
+            }
+            .imgbox img {
+                width: 100%;
+            }
+            .cat_item a {
+                text-decoration: none;
+            }
+        </style>
     </head>
-    <body>
+    <body style="margin: 0; padding: 0">
         {% block body %}{% endblock %}
     </body>
 </html>

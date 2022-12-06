@@ -12,10 +12,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'app_main')]
-    public final function index(): Response
+    public final function index(CategoriesRepository $categoriesRepository, ManufacturerRepository $manufacturerRepository,
+                                ProductRepository    $productRepository): Response
     {
         return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController',
+            'categories' => $categoriesRepository->findAll(),
+            'brands' => $manufacturerRepository->findAll(),
+            'products' => $productRepository->findAll()
         ]);
     }
 
