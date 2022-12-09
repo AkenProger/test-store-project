@@ -5,7 +5,12 @@ namespace App\Controller;
 use App\Repository\CategoriesRepository;
 use App\Repository\ManufacturerRepository;
 use App\Repository\ProductRepository;
+use App\Services\ExampleService;
+use App\Services\ExampleServiceImpl;
+use App\Services\OTPCodeGenerator;
+use App\Services\RandomQuestionGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -45,4 +50,50 @@ class MainController extends AbstractController
             'manufacturers' => $manufacturerRepository->findAll(),
         ]);
     }
+
+    #[Route('converter/', name: 'converter')]
+    public final function apiConverter(): JsonResponse
+    {
+        $money = 200;
+        $exampleService = new ExampleServiceImpl();
+        return $exampleService->currencyConverter($money);
+    }
+
+    #[Route('rates', name: 'rate')]
+    public final function getRatePrice(): JsonResponse
+    {
+        $exampleService = new ExampleServiceImpl();
+        return $exampleService->getRatePrice();
+    }
+
+
+    #[Route('category', name: 'category')]
+    public final function getAllCategories(CategoriesRepository $categoriesRepository): JsonResponse
+    {
+        $exampleService = new ExampleServiceImpl();
+        return $exampleService->getAllCategories($categoriesRepository);
+    }
+
+    #[Route('manufactures', name: 'manufacturer')]
+    public final function getAllManufacturers(ManufacturerRepository $manufacturerRepository): JsonResponse
+    {
+        $exampleService = new ExampleServiceImpl();
+        return $exampleService->getAllManufacturers($manufacturerRepository);
+    }
+
+    //Мои первый примеры использования сервисов
+    #[Route('example', name: 'example')]
+    public final function example(
+        OTPCodeGenerator        $OTPCodeGenerator,
+        RandomQuestionGenerator $randomQuestionGenerator
+
+    ): JsonResponse
+    {
+        $result = array(
+            "OTP code" => $OTPCodeGenerator->generate(),
+            "random question" => $randomQuestionGenerator->getRandomQuestion());
+        return new JsonResponse($result);
+    }
+
+
 }

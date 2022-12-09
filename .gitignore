@@ -12,7 +12,6 @@ docker-compose.override.yml
 /public/bundles/
 /var/
 /vendor/
-/.env
 /symfony.lock
 /docker-compose.override.yml
 ###< symfony/framework-bundle ###
