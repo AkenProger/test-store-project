@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Repository\CategoriesRepository;
 use App\Repository\ManufacturerRepository;
 use App\Repository\ProductRepository;
-use App\Services\ExampleService;
 use App\Services\ExampleServiceImpl;
 use App\Services\OTPCodeGenerator;
 use App\Services\RandomQuestionGenerator;
@@ -13,12 +12,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class MainController extends AbstractController
 {
     #[Route('/', name: 'app_main')]
-    public final function index(CategoriesRepository $categoriesRepository, ManufacturerRepository $manufacturerRepository,
-                                ProductRepository    $productRepository): Response
+    public final function index(
+        CategoriesRepository   $categoriesRepository,
+        ManufacturerRepository $manufacturerRepository,
+        ProductRepository      $productRepository
+    ): Response
     {
         return $this->render('main/index.html.twig', [
             'categories' => $categoriesRepository->findAll(),
@@ -95,5 +99,21 @@ class MainController extends AbstractController
         return new JsonResponse($result);
     }
 
+    //Пример работы с файлами
+    #[Route('fileExample', name: 'fileExample')]
+    public final function exampleWithFile(): Response
+    {
+        return $this->render('main/uploadFile.html.twig');
+    }
+
+    #[Route('exampleUpload', 'exampleUp')]
+    public final function exampleUploader(Request $request): void
+    {
+        //Тут можно отправить в сервис дял обработки
+        $path = $this->getParameter('kernel.project_dir') . '/public/uploads';
+        $image = $request->files->get('image');
+        $image->move($path);
+        dd($request);
+    }
 
 }
