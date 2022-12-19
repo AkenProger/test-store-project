@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ExampleFactory;
 use App\Repository\CategoriesRepository;
 use App\Repository\ManufacturerRepository;
 use App\Repository\ProductRepository;
@@ -114,6 +115,15 @@ class MainController extends AbstractController
         $image = $request->files->get('image');
         $image->move($path);
         dd($request);
+    }
+
+    #[Route('exampleApi', name: 'exampleApi')]
+    public final function exampleJsonApi(): JsonResponse
+    {
+        $example = ExampleFactory::create('12', 'sdfs', 'Adam.S');
+        $example2 = ExampleFactory::create('122', 'saddfs', 'Mari.S');
+        $data = [$example->asArray(), $example2->asArray()];
+        return new JsonResponse($data, 200, ["Content-Type" => "application/json"]);
     }
 
 }
