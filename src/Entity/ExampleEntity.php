@@ -2,11 +2,10 @@
 
 namespace App\Entity;
 
-
-use ApiPlatform\Core\Annotation\ApiResource;
-
+use ApiPlatform\Metadata\ApiResource;
 class ExampleEntity
 {
+
     private ?int $id = null;
 
     public int $rating;
