@@ -18,6 +18,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MainController extends AbstractController
 {
+    public function __construct
+    (
+        private ManufacturerRepository $manufacturerRepository,
+        private CategoriesRepository   $categoriesRepository
+    )
+    {
+    }
+
     #[Route('/', name: 'app_main')]
     public final function index(
         CategoriesRepository   $categoriesRepository,
@@ -124,6 +132,19 @@ class MainController extends AbstractController
         $example2 = ExampleFactory::create('122', 'saddfs', 'Mari.S');
         $data = [$example->asArray(), $example2->asArray()];
         return new JsonResponse($data, 200, ["Content-Type" => "application/json"]);
+    }
+    #[Route('manufacser', name: 'manser')]
+    public final function exampleWithSerializer(): Response
+    {
+        $manufacturers = $this->manufacturerRepository->findAll();
+        return $this->json($manufacturers);
+    }
+
+    #[Route('categoryser', name: 'catser')]
+    public final function exampleWithSerializer2(): Response
+    {
+        $categories = $this->categoriesRepository->findAll();
+        return $this->json($categories);
     }
 
 }
